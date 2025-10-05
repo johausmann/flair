@@ -48,8 +48,8 @@ def parse_bed(bedfh, names=False, plotany=False, keepiso=set()):
     for line in bedfh:
         line = line.rstrip().split('\t')
         name, start, end = line[3], int(line[1]), int(line[2])
-        blocksizes = [int(n) for n in line[10].split(',')[:-1]]
-        blockstarts = [int(n) + start for n in line[11].split(',')[:-1]]
+        blocksizes = [int(n) for n in line[10].split(',') if n]
+        blockstarts = [int(n) + start for n in line[11].split(',') if n]
 
         if '_' in name[-4:]:  # for isoforms with productivity appended to the name
             flag = name[name.rfind('_') + 1:]
